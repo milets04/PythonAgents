@@ -109,8 +109,8 @@ class EntornoGrid:
 
 
 # Simulación
-def simular_limpieza(pasos=30):
-    entorno = EntornoGrid(6, 6, 10)
+def simular_limpieza(pasos=20):
+    entorno = EntornoGrid(5, 5, 8)
     agente = SimpleLimpiezaAgente(2, 2)
 
     print("=== SIMULACIÓN: AGENTE REACTIVO CON MEMORIA ===\n")
