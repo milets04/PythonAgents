@@ -130,7 +130,7 @@ def simular_limpieza(pasos=20):
             print(f"Paso {paso + 1}: Moviéndose {accion}")
 
         # Mostrar entorno cada ciertos pasos
-        if paso % 5 == 0:
+        if paso % 2 == 0:
             entorno.mostrar(agente)
 
         if len(entorno.suciedad) == 0:

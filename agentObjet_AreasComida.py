@@ -197,6 +197,8 @@ def simular_recoleccion(pasos=30):
     print("=== SIMULACIÓN: AGENTE CON APRENDIZAJE (HEATMAP) ===\n")
     print("Estado inicial:")
     
+    entorno.mostrar(agente)
+    
     ### Configuración inicial de Matplotlib
     plt.ion()  # Activar modo interactivo
     fig, ax = plt.subplots() # Crear figura y ejes
