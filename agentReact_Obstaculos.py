@@ -14,11 +14,11 @@ class SimpleLimpiezaAgente:
         """Percibe el VALOR de la suciedad en su posición actual"""
         return entorno.valor_suciedad(self.x, self.y) 
 
-    ### Se añade 'paso_actual' para usarlo en los prints
+    # Se añade 'paso_actual' para usarlo en los prints
     def decidir_y_actuar(self, percepcion, entorno, paso_actual):
         """Decide qué acción tomar según la percepción, memoria y obstáculos"""
         
-        # Añadir posición actual a la memoria (sin imprimir, para reducir ruido)
+        # Añadir posición actual a la memoria
         posicion_actual = (self.x, self.y)
         self.visitados.add(posicion_actual)
         
@@ -33,7 +33,7 @@ class SimpleLimpiezaAgente:
             "derecha": (self.x + 1, self.y)
         }
 
-        ### Lógica de validación expandida para añadir el print
+        # Lógica de validación expandida para añadir el print
         movimientos_validos = {}
         for d, pos in movimientos.items():
             if not entorno.es_valido(*pos):
@@ -52,19 +52,17 @@ class SimpleLimpiezaAgente:
             if pos not in self.visitados
         }
 
-        ### Lógica de decisión para evitar quedarse atrapado
-        
-        # 2. Lógica para el "callejón sin salida"
+        # Lógica de decisión para evitar quedarse atrapado
+        # Lógica para el "callejón sin salida"
         if no_visitados:
-            # Prioridad 1: Moverse a un lugar nuevo
+            # Moverse a un lugar nuevo
             direccion = random.choice(list(no_visitados.keys()))
         elif movimientos_validos: 
-            # Prioridad 2: Si no hay nuevos, *debe* retroceder
-            # a un lugar ya visitado para escapar.
+            # Si no hay nuevos, *debe* retroceder a un lugar ya visitado para escapar.
             print(f"Paso {paso_actual}: No hay celdas nuevas. Retrocediendo por {posicion_actual}...")
             direccion = random.choice(list(movimientos_validos.keys()))
         else:
-            # Prioridad 3: No hay a dónde moverse
+            # No hay a dónde moverse
             return "quieto" 
 
         return direccion
@@ -179,15 +177,15 @@ def simular_limpieza(pasos=20):
             entorno.mover_agente(agente, accion)
             print(f"Paso {paso + 1}: Moviéndose {accion}")
         else:
-            ### Añadido número de paso
+            # Añadido número de paso
             print(f"Paso {paso + 1}: Quieto (atrapado).")
 
 
-        # Mostrar entorno (lógica sin cambios)
+        # Mostrar entorno
         if (paso + 1) % 3 == 0 or paso == pasos - 1:
             print(f"--- Estado en paso {paso+1} ---")
             entorno.mostrar(agente)
-
+    
         if len(entorno.suciedad) == 0:
             print("\n¡Toda la suciedad ha sido limpiada!")
             break
